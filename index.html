@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Cadence — Typing fingerprint</title><link rel="stylesheet" href="/style.css"></head>
+<body>
+<header><a class="brand" href="/" aria-label="Cadence home"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 19v-6m6 12V7m6 22V3m6 22V7m6 12v-6"/></svg>cadence</a><span class="local">Stored on this browser</span></header>
+<main>
+<section class="intro"><h1>A familiar rhythm.<br>A different kind of fingerprint.</h1><p>Your pauses and key presses form a pattern. Teach Cadence yours, then see whether another typing sample matches.</p></section>
+<div class="workspace">
+<section class="session" aria-labelledby="session-title">
+<nav class="tabs" aria-label="Typing mode"><button id="enroll-tab" aria-pressed="true">Enroll your rhythm</button><button id="verify-tab" aria-pressed="false" disabled>Verify a user</button></nav>
+<div class="session-body"><div class="section-heading"><h2 id="session-title">Make yourself known.</h2><span id="step">Sentence 1 of 5</span></div>
+<p id="instruction">Type five short sentences at your normal pace, then save your profile.</p>
+<div id="name-wrap"><label for="name">Profile name (required)</label><input id="name" required maxlength="40" placeholder="e.g. Alex" autocomplete="off"><p id="draft-status" class="typing-help" role="status">Completed sentences are saved in this tab as you continue. The current sentence starts over after a refresh.</p><button id="discard-draft" class="text-button" hidden>Start onboarding over</button></div>
+<label class="phrase-label" for="typing">Type this sentence exactly</label><p id="phrase" class="phrase"></p>
+<input id="typing" class="typing" placeholder="Start typing here…" autocomplete="off" autocapitalize="off" spellcheck="false" aria-describedby="typing-help feedback" aria-label="Type the displayed phrase">
+<p id="typing-help" class="typing-help">Use a physical keyboard. Correct the end of your text with Backspace. You can click away and return to continue.</p>
+<div class="input-meta"><span id="count">0 characters</span><button id="restart" class="text-button">Restart sample</button></div>
+<p id="feedback" role="status">Ready when you are. Timing starts with your first key.</p>
+<div class="actions"><button class="primary" id="save" disabled>Next sentence</button><span id="progress-text">0 of 5 sentences completed</span></div><div class="progress" aria-hidden="true"><div id="progress-bar"></div></div>
+<section id="result" class="result" hidden aria-live="polite"><h3 id="result-title"></h3><p id="result-detail"></p></section>
+</div></section>
+<aside><section class="trace-panel"><div class="section-heading"><h2>Your timing, live</h2><span id="live">Waiting</span></div><p>Each bar is a key press. Its height shows how long you held the key.</p><div class="trace" id="trace" role="img" aria-label="No key timings captured yet"></div><div class="trace-axis"><span>First key</span><span>Latest key</span></div><dl class="measurements"><div><dt>Average hold</dt><dd id="hold">— <small>ms</small></dd></div><div><dt>Between presses</dt><dd id="interval">— <small>ms</small></dd></div></dl></section>
+<section class="profile-panel"><h2>Enrolled profile</h2><p id="profile">No profile yet. Complete five sentences to create your typing profile.</p><button class="text-button danger" id="delete" hidden>Delete profile</button></section>
+<details><summary>How does this work?</summary><p>Cadence compares 20 measurements from your five enrollment sentences, including key holds, pace, overlapping keys, and word boundaries. If you click away, your sentence pauses; return to the field to continue. Time away is excluded from the comparison.</p><p>This is an experimental, single-profile verifier. It can confuse similar typists and reject you when your pace, keyboard, or posture changes. The match threshold is a heuristic, not a calibrated probability. Do not use it as your only authentication method.</p><p>Timing samples and your profile name stay in this browser’s local storage. Nothing is sent to a server. Capture only runs inside the typing field. Use Delete profile to remove saved timings.</p></details></aside>
+</div>
+<details class="metrics-panel"><summary>20 measurements behind your typing profile</summary>
+<p id="metrics-status">Finish a sentence to see all 20 measurements.</p>
+<p>Key holds, typing pace, key overlaps, and word boundaries each contribute equally to the comparison. A negative release-to-press gap means the next key was pressed before the previous key was released. More measurements do not guarantee identity; these estimates need real-user validation.</p>
+<div class="metrics-scroll"><table><caption>Current sentence and enrolled profile timing</caption><thead><tr><th scope="col">Measurement</th><th scope="col">This sentence</th><th scope="col">Profile average</th></tr></thead><tbody id="metric-rows"></tbody></table></div>
+</details>
+<footer><span>Five sentences. One keyboard. Your cadence.</span><span>Experimental keystroke verification</span></footer>
+</main><script type="module" src="/app.js"></script>
+</body></html>
